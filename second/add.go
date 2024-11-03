@@ -1,66 +1,53 @@
 package main
-
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strconv"
-	"strings"
-)
-
-func main() {
-	fmt.Println("Hi Abhishek.Veeramalla, I am a calculator app ....")
-
-	for {
-		// Read input from the user
-		reader := bufio.NewReader(os.Stdin)
-		fmt.Print("Enter any calculation (Example: 1 + 2 (or) 2 * 5 -> Please maintain spaces as shown in example): ")
-		text, _ := reader.ReadString('\n')
-
-		// Trim the newline character from the input
-		text = strings.TrimSpace(text)
-
-		// Check if the user entered "exit" to quit the program
-		if text == "exit" {
-			break
-		}
-
-		// Split the input into two parts: the left operand and the right operand
-		parts := strings.Split(text, " ")
-		if len(parts) != 3 {
-			fmt.Println("Invalid input. Try again.")
-			continue
-		}
-
-		// Convert the operands to integers
-		left, err := strconv.Atoi(parts[0])
-		if err != nil {
-			fmt.Println("Invalid input. Try again.")
-			continue
-		}
-		right, err := strconv.Atoi(parts[2])
-		if err != nil {
-			fmt.Println("Invalid input. Try again.")
-			continue
-		}
-
-		// Perform the calculation based on the operator
-		var result int
-		switch parts[1] {
-		case "+":
-			result = left + right
-		case "-":
-			result = left - right
-		case "*":
-			result = left * right
-		case "/":
-			result = left / right
-		default:
-			fmt.Println("Invalid operator. Try again.")
-			continue
-		}
-
-		// Print the result
-		fmt.Printf("Result: %d\n", result)
-	}
+ 
+ import (
+         "fmt"
+         "time"     
+ )
+ 
+ func main() {       
+    currentTime := time.Now()        
+    fmt.Println("\n######################################\n")
+    fmt.Println(currentTime.Format("2006-01-02 15:04:05"))
+     
+    fmt.Println("\n######################################\n")   
+    timeStampString := currentTime.Format("2006-01-02 15:04:05")    
+    layOut := "2006-01-02 15:04:05"     
+    timeStamp, err := time.Parse(layOut, timeStampString)
+    if err != nil {
+        fmt.Println(err)          
+    }   
+    hr, min, sec := timeStamp.Clock()
+     
+    fmt.Println("Year   :", currentTime.Year())
+    fmt.Println("Month  :", currentTime.Month())
+    fmt.Println("Day    :", currentTime.Day())
+    fmt.Println("Hour   :", hr)
+    fmt.Println("Min    :", min)
+    fmt.Println("Sec    :", sec)    
+     
+    fmt.Println("\n######################################\n")   
+    year, month, day := time.Now().Date()
+    fmt.Println("Year   :", year)
+    fmt.Println("Month  :", month)
+    fmt.Println("Day    :", day)
+     
+    fmt.Println("\n######################################\n")          
+    t := time.Now()
+     
+    y := t.Year()
+    mon := t.Month()
+    d := t.Day()
+    h := t.Hour()
+    m := t.Minute()
+    s := t.Second()
+    n := t.Nanosecond()
+     
+    fmt.Println("Year   :",y)
+    fmt.Println("Month   :",mon)
+    fmt.Println("Day   :",d)
+    fmt.Println("Hour   :",h)
+    fmt.Println("Minute :",m)
+    fmt.Println("Second :",s)
+    fmt.Println("Nanosec:",n)
 }
